@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="zepto.js"></script>
+	<script>
+		var url = "http://live.add.com/index.php"
+		$.get(url,function(a){
+			$("body").append(a)
+		})
+		
+		fetch(url).then(function(res){
+			return res.test()
+		}).then(function(a){
+			alert(a)
+		})
+		
+		
+	</script>
+</body>
+</html>

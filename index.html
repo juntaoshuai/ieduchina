@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="http://m.ieduchina.com/statics/css/share.css">
+	<script type="text/javascript" src="http://m.ieduchina.com/statics/js/jquery-1.8.3.js"></script>
+	<script src="http://m.ieduchina.com/statics/js/share.js"></script>
+	<title>html</title>
+</head>
+
+<body>
+	<div id="app"></div>
+	<script type="text/javascript">
+		window.userLogin;
+		window.vodArr;
+
+		function login(loginType, userId, roomId, nonce, mode, ak) {
+			var msg = {};
+			msg.loginType = loginType;
+			msg.userId = userId;
+			msg.roomId = roomId;
+			msg.nonce = nonce;
+			msg.mode = mode;
+			msg.ak = ak;
+			userLogin = msg;
+		};
+		//login(2, 69, 20, "JJJ0WH", 2, "B49FCDA81981FC6F5A07EAB1B4795E8A72168D54");
+		// login(1, 8, 13, 'www', 2, '1E81F80BBB7222B636BA8692F9ED58A6C641CF83'); // 观众
+		// login(1, 78, 3, "vo3oRY", 2, "AA4B70BB3336C6CBAA2CCFCD718A4964A1F0C619");
+
+		// login(2, 22, 6, "V3Jfhr", 2, "1925B816E749FF8CB30BFEA7902FC83B49602CA0");
+		login(1, 11, 2, "V2kKqI", 2, "9C861089D198B3FB0D702D88315F6E442DB59BDE");
+		// login(2, 8,7, "stePIg", 2, "D488060E7C25EDA2BCE677BD9F699106B0D7A7BA");
+		//login(1, 13, 16, "17Y8Qv", 2, "D043C05D3B9F68C303EFA5247FA223E8E482D63F");
+
+	</script>
+</body>
+
+</html>
