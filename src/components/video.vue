@@ -2,7 +2,11 @@
 <div class="video" id="video" v-bind:style="{backgroundImage:'url('+room.reviewUrl+')'}">
 	<!--0:视频直播，1:预告，2：图文，4：结束，5：ppt直播，6：查看回顾，7：即将开始，10：加载-->
 	<!--直播-->
-    <video v-bind:src="hlsDownstream" v-bind:poster="room.reviewUrl" controls autoplay v-if="model==0"></video>
+	<div class="play-view" v-if="model == 0 || model == 4 || model == 9" v-show="!isPlaying" v-on:click="clickPlay()" v-bind:style="{backgroundImage:'url('+room.reviewUrl+')'}">
+			<img class="play-icon" src="../assets/play.png">
+	</div>
+	
+    <video v-bind:src="hlsDownstream" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" controls autoplay v-if="model==0"></video>
     
 	<!--预告-->
 	<div class="m-yugao" v-if="model==1">
@@ -33,23 +37,23 @@
 		<p>直播即将开始，请耐心等待！</p>
 	</div>
 
-	<!--直播结束-->
+	<!--查看回顾-->
 	<div class="end" v-if="model==4">
-		<video controls v-bind:src="vod" v-bind:poster="room.reviewUrl" onended="myFunction()"></video>
+		<video controls v-bind:src="vod" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" onended="myFunction()"></video>
 	</div>
 	
     <!-- 视频直播 -->
     <div class="vodlook" v-if="model==9">
-        <video v-bind:src="vodliving" v-bind:poster="room.reviewUrl" controls></video>
+        <video v-bind:src="vodliving" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" controls></video>
     </div>
-
+	
+	<!--直播结束-->
 	<div class="m-prepare"  v-if="model==8">
 		<!--<img v-bind:src="room.coverUrl" height="100%" alt="">-->
 		<p>直播已结束，感谢收看。敬请期待直播回顾。</p>
 	</div>
 	
-	<!--查看回顾-->
-	<video src="" v-if="model==6"  onended="myFunction()"></video>
+
 </div>
 </template>
 
@@ -60,7 +64,8 @@ export default {
 		return {
 			h:0,
 			m:0,
-			s:0
+			s:0,
+			isPlaying: false
 		}
 	},
 	props:{
@@ -130,6 +135,12 @@ export default {
             }
             let url = getString('0105')
             io.send(url)
+		},
+		clickPlay: function() {
+			document.querySelectorAll('#video video')[0].play()
+		},
+		playing: function() {
+			this.isPlaying = true
 		}
 	}
 }
@@ -154,4 +165,8 @@ video{width: 100%;height: 100%;background: #000;}
 	.ppt_content{position: relative;height: 100%;}
 	.m-prepare img,.m-yugao img{position: absolute;height: 100%;left: 0;top: 0;margin-left: -50%;z-index: 2}
 	.ppt_content p{width: 100%;margin-left: -50%;top: .2rem;margin-top: 0;}
+	
+	.play-view{ position: relative; width: 100%; height: 100%; }
+	.play-icon{ position: absolute; left: 50%; top: 50%; width: 50px; height: 50px; margin: -25px 0 0 -25px;}
+
 </style>

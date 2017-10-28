@@ -21,7 +21,8 @@ export default {
     data (){
         return {
             logindia:false,              //用户是否登录
-            loginurl:'http://m.ieduchina.com/navigation.html?do=login&callback='+location.href,
+            // loginurl:'http://m.ieduchina.com/navigation.html?do=login&callback='+location.href,
+            loginurl:'http://live.ieduchina.com/audience-login-page?callback='+location.href,
             resurl:'http://m.ieduchina.com/register.html?callback='+location.href
         }
     },
