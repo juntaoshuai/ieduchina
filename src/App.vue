@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <my-header :room="room"></my-header>
-        <my-video :order=order :model=model :room=room :hlsDownstream=hlsDownstream :vod=vod :pptImg=pptImg :vodliving=vodliving></my-video>
+        <my-video :order=order :model=model :room=room :hlsDownstream=hlsDownstream :vod=vod :pptImg=pptImg :vodliving=vodliving :hlsVoiceDownstream = "hlsVoiceDownstream"></my-video>
         <div class="gray"></div>
         <my-nav :status=status :kefu=kefu :active=active></my-nav>
         <section>
@@ -269,6 +269,7 @@ export default {
                                 let pptId = data.body.pptId
                                 page = data.body.page
 								$this.hlsDownstream = data.body.hlsDownstream
+                                $this.hlsVoiceDownstream = data.body.hlsVoiceDownstream
                                 let url = getString('0321',{"id":pptId})
                                 io.send(url)
 								$this.model = 5

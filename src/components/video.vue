@@ -27,8 +27,11 @@
 		<!--<video v-bind:src="hlsDownstream" v-bind:poster="pptImg" controls autoplay></video>-->
 		<img v-bind:src="pptImg" alt="" width="100%" height="100%">
 		<!-- <p>如果您听不到直播声音，建议用电脑观看PPT直播</p> -->
-		<audio id="media_audio" webkit-playsinline="" controls  autoplay playsinline="" v-bind:src="hlsDownstream">
-     (#_#) 你的设备不支持播放视频直播... </audio>
+		
+		<audio v-if="hlsVoiceDownstream" id="voice" v-bind:src="hlsVoiceDownstream" controls autoplay></audio>
+
+		<audio v-else id="media_audio" v-bind:src="hlsDownstream" controls autoplay></audio>
+
 	</div>
 	
 	<!--即将开始-->
@@ -42,7 +45,7 @@
 		<video controls v-bind:src="vod" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" onended="myFunction()"></video>
 	</div>
 	
-    <!-- 视频直播 -->
+    <!-- 视频点播 -->
     <div class="vodlook" v-if="model==9">
         <video v-bind:src="vodliving" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" controls></video>
     </div>
@@ -89,6 +92,9 @@ export default {
 		},
 		vodliving:{
 			type:String
+		},
+		hlsVoiceDownstream: {
+			type: String
 		}
 	},
 	mounted:function(){
@@ -148,7 +154,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#media_audio{position: absolute;bottom: 0;left: 0;width: 100%;background: rgba(0,0,0,.3);z-index: 5;}	
+#media_audio,#voice{position: absolute;bottom: 0;left: 0;width: 100%;background: rgba(0,0,0,.3);z-index: 5;}	
 .video{height: 4.2rem;overflow: hidden;position: absolute;width: 100%;left: 0;top: .78rem;z-index: 5;background-size: 100% 100%;}
 video{width: 100%;height: 100%;background: #000;}
 .vodlook{height: 100%;}	
