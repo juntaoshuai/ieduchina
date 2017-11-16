@@ -54,7 +54,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.living{padding: .3rem;overflow-y:auto;height: 100%;word-break: break-all}
+.living{padding: .3rem;overflow-y:auto;-webkit-overflow-scrolling: touch; height: 100%;word-break: break-all}
 .living span.fl{display: block;width: .24rem;height: .24rem;background:#fff url(../assets/time.png);background-size: 100% 100%;margin-left: -.34rem;margin-top: 0;position: relative;z-index: 555;}
 .living h3{color: #27aec2;font-size: .24rem;font-weight: normal;}
 .living article{line-height: .45rem;color: #000;margin-top: .12rem;}

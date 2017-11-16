@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped="">
-.content{padding: 0 .3rem 1.4rem .3rem;height: 100%;overflow-y: auto;position: relative;}
+.content{padding: 0 .3rem 1.4rem .3rem;height: 100%;overflow-y: auto;-webkit-overflow-scrolling: touch;position: relative;}
 .content img.fl{width: .8rem;height: .8rem;}
 div.fl{margin-left: .12rem;padding-top: .1rem;}
 li{padding: .16rem 0;border-bottom: 1px solid #b5b5b5;}

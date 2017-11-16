@@ -6,7 +6,7 @@
 			<img class="play-icon" src="../assets/play.png">
 	</div>
 	
-    <video v-bind:src="hlsDownstream" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" controls autoplay v-if="model==0"></video>
+    <video v-bind:src="hlsDownstream" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" webkit-playsinline playsinline controls autoplay v-if="model==0"></video>
     
 	<!--预告-->
 	<div class="m-yugao" v-if="model==1">
@@ -42,12 +42,12 @@
 
 	<!--查看回顾-->
 	<div class="end" v-if="model==4">
-		<video controls v-bind:src="vod" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" onended="myFunction()"></video>
+		<video controls v-bind:src="vod" v-bind:poster="room.reviewUrl" webkit-playsinline playsinline v-show="isPlaying" v-on:playing="playing" onended="myFunction()"></video>
 	</div>
 	
     <!-- 视频点播 -->
     <div class="vodlook" v-if="model==9">
-        <video v-bind:src="vodliving" v-bind:poster="room.reviewUrl" v-show="isPlaying" v-on:playing="playing" controls></video>
+        <video v-bind:src="vodliving" v-bind:poster="room.reviewUrl" webkit-playsinline playsinline v-show="isPlaying" v-on:playing="playing" controls></video>
     </div>
 	
 	<!--直播结束-->

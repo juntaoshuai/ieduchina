@@ -61,28 +61,41 @@
 </template>
 
 <script>
-import {dataTime,getString} from '../js/common'
-    export default {
-        props:{
-            room:{
-                type:Object,
-                default:''
-            },
-			contact:{
-				type:Object
-			},
-			contactShow:{
-				type:Number
-			}
-        }
+import { dataTime, getString } from "../js/common";
+export default {
+  props: {
+    room: {
+      type: Object,
+      default: ""
+    },
+    contact: {
+      type: Object
+    },
+    contactShow: {
+      type: Number
     }
+  }
+};
 </script>
 
 <style>
-    .intro{    padding: .3rem;
-    height: 100%;
-    overflow-y: auto;
-    position: relative;font-size: .32rem;}
-    .intro .dl{position: relative;padding-left: 1.65rem;margin-bottom: .12rem;}
-    .intro .dt{position: absolute;left: 0;top: 0;width: 1.8rem;}
+.intro {
+  padding: 0.3rem;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  font-size: 0.32rem;
+}
+.intro .dl {
+  position: relative;
+  padding-left: 1.65rem;
+  margin-bottom: 0.12rem;
+}
+.intro .dt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+}
 </style>
