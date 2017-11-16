@@ -17,7 +17,6 @@
 			</swiper>
         </section>  
         <my-footer v-show="active==1" :loginType=loginType :defVal=defVal></my-footer>
-        <login :nologin=nologin></login> 
         <!-- 加载动画效果 -->
         <load v-show="model==10" :error="error"></load>
         <!--黑名单弹窗-->
@@ -40,9 +39,8 @@ import black from './components/black.vue'
 import {socket} from './js/socket'
 import send from './js/send'
 import {dataTime,getString,lookStr,aiTe,biaoQing,kefu} from './js/common'
-
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
+import { MessageBox } from 'mint-ui'
 export default {
     name: 'app',
     components: {
@@ -206,6 +204,37 @@ export default {
 						//获取房间基本信息
 						case '0300':
 							$this.room = data.body
+                            
+                            // 会员模式下，允许游客进入直播间，5秒后自动弹出登录弹窗
+                            if($this.room.watchMode == 1 && userLogin.loginType == 2){
+                                setTimeout(()=>{
+                                    showLogin({'title':'请登录后继续观看'});
+                                    $("video").hide();
+                                    $("video")[0].pause();
+
+                                },5000);
+                            }
+
+                            //关闭登录弹框
+                            if($this.room.watchMode == 1 && userLogin.loginType == 2){
+                                closeLogin(() => {
+                                    MessageBox.confirm('你确定要退出吗？建议登录后观看','',{
+                                        confirmButtonText: '确定退出',
+                                        cancelButtonText: '返回',
+                                        cancelButtonClass: 'cancel-login',       
+                                        closeOnClickModal: false
+                                    })
+                                    .then(action => {
+                                        window.location.href="http://live.ieduchina.com/";
+                                    });
+                                })
+                            } else {
+                                closeLogin();
+                            }
+
+
+
+
                             $this.room.start = dataTime(data.body.startTime)
                             $this.room.end = dataTime(data.body.endTime)
 							let status = data.body.status

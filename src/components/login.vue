@@ -8,7 +8,7 @@
 			<h4>提示</h4>
 			<p>您还没有登录，无法进行操作</p>
 			<div>
-				<a v-bind:href="loginurl" class="login_btn">登 录</a>
+				<a href="javascript:;" class="login_btn" @click="login()">登 录</a>
 				<a v-bind:href="resurl" class="resgiter_btn">注 册</a>
 			</div>
 		</div>
@@ -36,6 +36,10 @@ export default {
     },
     methods:{
 		hide:function(){
+			this.$parent.nologin = false
+		},
+		login() {
+			showLogin();
 			this.$parent.nologin = false
 		}
     }
