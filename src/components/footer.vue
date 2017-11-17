@@ -14,7 +14,7 @@
 			</ul>
 		</div>
 
-		<!-- <div class="no_login" @click='loginShow' v-show="loginType==2"></div> -->
+		<div class="no_login" @click='loginShow' v-show="loginType == 2"></div>
 	</footer>
 </template>
 
@@ -38,13 +38,6 @@ export default {
 	},
 	methods:{
 		send:function(){
-            if(this.loginType == 2){
-                showLogin()
-                $("video").hide();
-                $("video")[0].pause();
-                return;
-            }
-            
 			var result = this.val.replace(/(^\s+)|(\s+$)/g,"");
 			if(result == ''){
 				alert('聊天内容不能为空！')
@@ -67,7 +60,10 @@ export default {
 			this.isshow = false
 		},
 		loginShow:function(){
-			this.$parent.nologin = true
+			showLogin()
+            $("video").hide();
+            $("video")[0].pause();
+            return;
 		}
 	},
     updated:function(){
